@@ -36,19 +36,12 @@
       <delete dir="bin/**"/>
     </target>
   
-    <target name="build-test" depends="init">
-      <echo message="${ant.project.name}: ${ant.file}"/>
-      <mkdir dir="bin/tests"/>
-      <javac debug="true" debuglevel="${debuglevel}" destdir="bin/tests" includeantruntime="false" source="${source}" target="${target}">
-        <src path="test"/>
-        <classpath refid="Hanoi.classpath"/>
-      </javac>
-    </target>
+
     
     <target
       name="test"
       description="Runs all JUnit tests."
-      depends="build-test">
+      depends="build">
       
       <junit
         fork="yes"
@@ -71,10 +64,11 @@
       </fail>
     </target>
 
-    <target depends="init,clean,build-test,test" name="build">
+    <target depends="init,clean" name="build">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
+            <src path="test"/>
             <classpath refid="Hanoi.classpath"/>
         </javac>
     </target>
