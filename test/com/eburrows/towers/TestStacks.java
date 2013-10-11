@@ -12,8 +12,6 @@ import com.eburrows.towers.RodSet;
 
 public class TestStacks
 {
-  private final int MIN_DISKS_PER_ROD = 3;
-  private final int MAX_DISKS_PER_ROD = 15;
   int numDisks = 6;
   RodSet rods;
   
@@ -38,8 +36,8 @@ public class TestStacks
   @Test
   public void tooManyDisks()
   {
-    RodSet rod = new RodSet(MAX_DISKS_PER_ROD + 2);
-    assertTrue(rod.getDisksPerRod()== MIN_DISKS_PER_ROD);
+    RodSet rod = new RodSet(Constants.MAX_DISKS_PER_ROD + 2);
+    assertTrue(rod.getDisksPerRod()== Constants.MIN_DISKS_PER_ROD);
   }
   
   /**
@@ -49,7 +47,7 @@ public class TestStacks
   public void tooFewDisks()
   {
     RodSet rod = new RodSet(-2);
-    assertTrue(rod.getDisksPerRod()== MIN_DISKS_PER_ROD);
+    assertTrue(rod.getDisksPerRod()== Constants.MIN_DISKS_PER_ROD);
   }
 
   /**

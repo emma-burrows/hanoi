@@ -4,21 +4,20 @@ import java.util.ArrayList;
 
 public class RodSet
 {
-  private final int RODS = 3;
-  private final int MIN_DISKS_PER_ROD = 3;
-  private final int MAX_DISKS_PER_ROD = 15;
-  private int disksPerRod = MAX_DISKS_PER_ROD;
+  private int disksPerRod = Constants.MAX_DISKS_PER_ROD;
   ArrayList<Rod> rods = new ArrayList<Rod>();
+  
+  public Move move = new Move(this);
 
   public RodSet(int disksPerRod)
   {
-    if (disksPerRod <= MAX_DISKS_PER_ROD && disksPerRod >= MIN_DISKS_PER_ROD)
+    if (disksPerRod <= Constants.MAX_DISKS_PER_ROD && disksPerRod >= Constants.MIN_DISKS_PER_ROD)
     {
       this.setDisksPerRod(disksPerRod);
     }
     else
     {
-      this.setDisksPerRod(MIN_DISKS_PER_ROD);
+      this.setDisksPerRod(Constants.MIN_DISKS_PER_ROD);
     }
     
     initRods();
@@ -27,7 +26,7 @@ public class RodSet
 
   private void initRods()
   {
-    for (int i = 0; i <= RODS; i++)
+    for (int i = 0; i <= Constants.RODS; i++)
     {
       if (i == 0)
       {
