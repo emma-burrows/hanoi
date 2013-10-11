@@ -37,7 +37,7 @@
       <delete dir="bin/**"/>
     </target>
   
-    <target name="build-test">
+    <target name="build-test" depends="init">
       <echo message="${ant.project.name}: ${ant.file}"/>
       <mkdir dir="bin/tests"/>
       <javac debug="true" debuglevel="${debuglevel}" destdir="bin/tests" includeantruntime="false" source="${source}" target="${target}">
@@ -47,7 +47,7 @@
     </target>
     
     <target
-      name="run-tests"
+      name="test"
       description="Runs all JUnit tests."
       depends="build-test">
       
@@ -79,7 +79,7 @@
       </fail>
     </target>
 
-    <target depends="init,clean,build-test,run-tests" name="build">
+    <target depends="init,clean,build-test,test" name="build">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
