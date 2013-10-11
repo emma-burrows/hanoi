@@ -66,13 +66,6 @@
         </batchtest>
       </junit>
       
-      <junitreport todir="bin/tests">
-        <fileset dir="bin/tests">
-          <include name="TEST-*.xml"/>
-        </fileset>
-        <report format="frames" todir="bin/tests"/>
-      </junitreport>
-      
       <fail if="test.failed">
         One or more JUnit tests failed: check bin/test for info.
       </fail>
