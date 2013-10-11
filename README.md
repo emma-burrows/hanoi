@@ -1,4 +1,4 @@
-"!https://travis-ci.org/emma-burrows/hanoi.png!":https://travis-ci.org/emma-burrows/hanoi
+[![Build Status](https://travis-ci.org/emma-burrows/hanoi.png)](https://travis-ci.org/emma-burrows/hanoi)
 
 Hanoi
 =====
