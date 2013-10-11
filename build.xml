@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="Hanoi">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../../../Dev/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+
+    <path id="JUnit-4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="Hanoi.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit-4.libraryclasspath"/>
+    </path>
+  
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+      <delete dir="bin/**"/>
+    </target>
+  
+    <target name="build-test">
+      <echo message="${ant.project.name}: ${ant.file}"/>
+      <mkdir dir="bin/tests"/>
+      <javac debug="true" debuglevel="${debuglevel}" destdir="bin/tests" includeantruntime="false" source="${source}" target="${target}">
+        <src path="test"/>
+        <classpath refid="Hanoi.classpath"/>
+      </javac>
+    </target>
+    
+    <target
+      name="run-tests"
+      description="Runs all JUnit tests."
+      depends="build-test">
+      
+      <junit
+        fork="yes"
+        printsummary="false"
+        haltonfailure="false"
+        errorProperty="test.failed"
+        failureProperty="test.failed">
+        <classpath refid="Hanoi.classpath"/>
+        <formatter type="brief" usefile="false"/>
+        <formatter type="xml"/>
+        <batchtest todir="bin/tests">
+          <fileset dir="bin/tests">
+            <include name="**/*.class"/>
+          </fileset>
+        </batchtest>
+      </junit>
+      
+      <junitreport todir="bin/tests">
+        <fileset dir="bin/tests">
+          <include name="TEST-*.xml"/>
+        </fileset>
+        <report format="frames" todir="bin/tests"/>
+      </junitreport>
+      
+      <fail if="test.failed">
+        One or more JUnit tests failed: check bin/test for info.
+      </fail>
+    </target>
+
+    <target depends="init,clean,build-test,run-tests" name="build">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Hanoi.classpath"/>
+        </javac>
+    </target>
+
+    <target name="TowersOfHanoi">
+        <java classname="com.eburrows.client.TowersOfHanoi" failonerror="true" fork="yes">
+            <classpath refid="Hanoi.classpath"/>
+        </java>
+    </target>
+</project>
