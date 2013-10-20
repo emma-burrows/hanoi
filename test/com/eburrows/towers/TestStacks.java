@@ -68,8 +68,7 @@ public class TestStacks
   @Test
   public void firstRodfirstDiskSize()
   {
-    Rod rod1 = rods.getRod(1);
-    assertTrue(rod1.getDisk(1).getDiskSize() == numDisks);
+    assertTrue(rods.getRod(1).getDisk(1).getDiskSize() == numDisks);
   }
   
   /**
@@ -79,8 +78,7 @@ public class TestStacks
   @Test
   public void firstRodlastDiskSize()
   {
-    Rod rod1 = rods.getRod(1);
-    assertTrue(rod1.getDisk(numDisks).getDiskSize() == 1);
+    assertTrue(rods.getRod(1).getDisk(numDisks).getDiskSize() == 1);
   }
   
   /**
@@ -89,8 +87,7 @@ public class TestStacks
   @Test
   public void secondRod()
   {
-    Rod rod2 = rods.getRod(2);
-    assertTrue(rod2.getDisk(1) == null);
+    assertTrue(rods.getRod(2).getDisk(1).getDiskSize() == 0);
   }
   
   /**
@@ -99,7 +96,24 @@ public class TestStacks
   @Test
   public void thirdRod()
   {
-    Rod rod2 = rods.getRod(3);
-    assertTrue(rod2.getDisk(1) == null);
+    assertTrue(rods.getRod(3).getDisk(1).getDiskSize() == 0);
+  }
+  
+  /**
+   * Check that you can get the last disk from a rod 
+   */
+  @Test
+  public void topDiskFromRod1()
+  {
+    assertTrue(rods.getRod(1).getTopDisk() instanceof Disk);
+  }
+  
+  /**
+   * Check that the last disk from rod 1 is size 1
+   */
+  @Test
+  public void topDiskSizeFromRod1()
+  {
+    System.out.println(rods.getRod(1).getTopDisk().getDiskSize());
   }
 }

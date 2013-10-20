@@ -11,14 +11,7 @@ public class RodSet
 
   public RodSet(int disksPerRod)
   {
-    if (disksPerRod <= Constants.MAX_DISKS_PER_ROD && disksPerRod >= Constants.MIN_DISKS_PER_ROD)
-    {
-      this.setDisksPerRod(disksPerRod);
-    }
-    else
-    {
-      this.setDisksPerRod(Constants.MIN_DISKS_PER_ROD);
-    }
+    this.setDisksPerRod(disksPerRod);
     
     initRods();
 
@@ -26,7 +19,7 @@ public class RodSet
 
   private void initRods()
   {
-    for (int i = 0; i <= Constants.RODS; i++)
+    for (int i = 0; i < Constants.RODS; i++)
     {
       if (i == 0)
       {
@@ -46,14 +39,28 @@ public class RodSet
 
   public void setDisksPerRod(int disksPerRod)
   {
-    this.disksPerRod = disksPerRod;
+    if (disksPerRod <= Constants.MAX_DISKS_PER_ROD && disksPerRod >= Constants.MIN_DISKS_PER_ROD)
+    {
+      this.disksPerRod = disksPerRod;
+    }
+    else
+    {
+      this.disksPerRod = Constants.MIN_DISKS_PER_ROD;
+    }
   }
 
 
 
   public Rod getRod(int i)
   {
-    return rods.get(i - 1);
+    if (i <= 0)
+    {
+      return rods.get(0);
+    }
+    else
+    {
+      return rods.get(i - 1);
+    }
   }
 
 }

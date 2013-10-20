@@ -20,13 +20,33 @@ public class Move
     return this;
   }
   
-  public String to(int num)
+  public String to(int rodNumber)
   {
+    if (rodNumber <= Constants.RODS && rodNumber > 0)
+    {
+      toRod = rodNumber;
+    }
     return moveDisks();
   }
   
   private String moveDisks()
   {
-    return "Success!";
+    int fromDisk = rods.getRod(fromRod).getTopDisk().getDiskSize();
+    int toDisk = rods.getRod(toRod).getTopDisk().getDiskSize();
+    
+    if (fromDisk == 0)
+    {
+      return "No disk on rod " + fromRod + "!";
+    }
+    else if (toDisk != 0 && fromDisk > toDisk)
+    {
+      return "Invalid move!";
+    }
+    else
+    {
+      Disk movedDisk = rods.getRod(fromRod).removeTopDisk();
+      rods.getRod(toRod).addDiskToTop(movedDisk);
+      return "Success!";
+    }
   }
 }
